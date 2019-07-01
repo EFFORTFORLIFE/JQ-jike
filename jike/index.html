@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css"/>
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <!--[if lt IE 9]>
+        <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+    <![endif]-->
+    <title>极客</title>
+    <style>
+        .carousel{
+            width: 100%;
+            height:24rem;
+            background: #cfc;
+            position:relative;
+        }
+        .carousel div,a{
+            list-style: none;
+            padding:0px;
+            margin:0px;
+        }
+        .carousel div{
+            position:relative;
+            width:100%;
+            height: 100%;
+        }
+        .carousel a{
+            position:absolute;
+            top:0px;
+            left:0px;
+            overflow: hidden;
+            width:100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .carousel img{
+            width:100%;
+            height: 100%;
+        }
+        .carousel span{
+            width:50px;
+            background:rgba(0,0,0,0.5);
+            text-align: center;
+            line-height:80px;
+            height: 80px;
+            color:#fff;
+        }
+        .carousel span:first-of-type{
+            position:absolute;
+            top:50%;
+            z-index: 99;
+            transform: translateY(-50%);
+            border-radius:0 10px 10px 0;
+        }
+        .carousel span:last-of-type{
+            position:absolute;
+            top:50%;
+            right:0px;
+            z-index: 99;
+            transform: translateY(-50%);
+            border-radius:10px 0 0 10px;
+        }
+        .advertisement{
+            width:85%;
+            display:flex;
+            margin:1rem auto;
+            justify-content: space-between;
+        }
+        .advertisement a{
+            width:32%;
+            height: 7rem;
+            overflow:hidden;
+        }
+        .advertisement a:hover{
+            box-shadow: 2px 2px 5px #666;
+        }
+        .advertisement a img{
+            width:100%;
+            height: 100%;
+        }
+        .newclass{
+            width:85%;
+            margin:0 auto 1rem;
+        }
+        .newclass>div{
+            display:flex;
+            justify-content: space-between;
+        }
+        .newclass_title{
+            display: block;
+            margin-bottom:1rem;
+        }
+        .newclass_item{
+            display:inline-block;;
+            width:24%;
+            height:auto;
+            background:#fff;
+            box-shadow:4px 4px 4px #999;
+            position: relative;
+        }
+        .newclass_item div{
+            width: 100%;
+            height: 100%;
+            background-color:rgba(0,0,0,0.3);
+            z-index: 3;
+            position: absolute;
+            top:0px;
+            left:0px;
+            margin:0px;
+        }
+        .newclass_item span{
+            margin-left:1rem;
+            margin-bottom:1rem;
+        }
+        .newclass_item span:nth-last-of-type(-n+2){
+            font-size: 0.7rem;
+            color:#999;
+        }
+        .newclass div img{
+            max-width:100%;
+        }
+        .item_title{
+            font-size:0.9rem;
+            color: #333;
+        }
+        .occupation{
+            width:85%;
+            margin:0 auto;
+        }
+        .occupation>div{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .occupation_title{
+            display: block;
+            margin-bottom:1rem;
+        }
+        .occupation span{
+            display:block;
+        }
+        .occupation img{
+            width:100%;
+            height:auto;
+        }
+        .occupation_item{
+            background:#fff;
+            padding:0.75rem;
+            display:inline-block;
+            width:24%;
+            box-sizing: border-box;
+            margin-bottom:0.5rem;
+            box-shadow:4px 4px 4px #999;
+            position:relative;
+        }
+        .occupation_item div{
+            width: 100%;
+            height: 100%;
+            background-color:rgba(0,0,0,0.3);
+            z-index: 3;
+            position: absolute;
+            top:0px;
+            left:0px;
+            margin:0px;
+        }
+        .story{
+            width:85%;
+            margin:1rem auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .story_item{
+            width:33%;
+            background:#fff;
+            font-size:1rem;
+            box-sizing: border-box;
+            border: 1px #999 solid;
+            float:left;
+        }
+        .story_item>i{
+            margin:0 auto;
+            display:block;
+            text-align: center;
+            background:red;
+            width:70px;
+            font-style: normal;
+            border-radius: 5px;
+            margin-top:5px;
+            font-size:14px;
+            color:#fff;
+            padding:2px;
+        }
+        .story_item>p{
+            margin:0px;
+            max-width:100%;
+            padding:10px;
+        }
+        .personal{
+            height: 3.5rem;
+            background:#f1dcdc;
+            box-sizing: border-box;
+            position: relative;
+
+        }
+        .personal img{
+            display:inline-block;
+            height: 2.2rem;
+            width:2.2rem;
+            border-radius: 50%;
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            margin-left:0.75rem;
+        }
+        .person_detail{
+            position:absolute;
+            left:80px;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        .person_detail span{
+            display:inline-block;
+            font-size: 0.9rem;
+        }
+        .person_detail span:nth-of-type(2){
+            color:#666;
+            font-size:0.8rem;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            /*carousel*/
+            var index=-1;
+            var flag=true;
+            $(".carousel span").eq(0).click(function () {
+                if(index>=2){
+                    index=-1;
+                }
+                index++;
+                $('.carousel a').eq(index).fadeIn();
+                $('.carousel a').eq(index-1).fadeOut();
+            })
+            $(".carousel span").eq(1).click(function () {
+                if(flag){
+                    index=2;
+                    flag=!flag;
+                }
+                if(index<=0){
+                    index=3;
+                }
+                index--;
+                $('.carousel a').eq(index).fadeIn();
+                $('.carousel a').eq(index+1).fadeOut();
+            })
+            /*newclass*/
+            $(".newclass_item").mouseover(function () {
+                $(this).find("div").stop().animate({height:'0px'});
+            })
+            $(".newclass_item").mouseout(function (){
+                $(this).find("div").stop().animate({height:'100%'});//用slideDown，变换窗口大小时就不正常
+            })
+            /*occupation*/
+            $(".occupation_item").mouseover(function () {
+                $(this).find("div").stop().animate({
+                    width:'0px',
+                    height:'0px',
+                });
+            })
+            $(".occupation_item").mouseout(function () {
+                $(this).find("div").stop().animate({
+                    width:'100%',
+                    height:'100%',
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+<nav>
+    <section class="logo"></section>
+    <section class="nav-list">
+        <ul>
+            <li>
+                <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a href="occupation.html">职业<span></span></a>
+                <div class="nav_show_div" id="nav_show_div1">
+                    <strong>前端</strong>
+                    <a href="#">web前端工程师</a>
+                    <a  href="#">小程序</a>
+                </div>
+            </li>
+            <li>
+                <a href="course.html">课程<span></span></a>
+                <div class="nav_show_div" id="nav_show_div2">
+                    <strong>课程库</strong>
+                    <a href="#">职业路径</a>
+                    <a  href="#">知识体系图</a>
+                </div>
+            </li>
+            <li>
+                <a href="community.html">社区<span></span></a>
+                <div class="nav_show_div" id="nav_show_div3">
+                    <strong>微软</strong>
+                    <a href="#">人工智能</a>
+                    <a  href="#">AWS云计算</a>
+                </div>
+            </li>
+            <li>
+                <a href="enterprise.html">企业<span></span></a>
+                <div class="nav_show_div" id="nav_show_div4">
+                    <strong>WiKi</strong>
+                    <a href="#">技术问答</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <section class="log_reg">
+        <a href="login.html">登陆</a>
+        <a href="register.html">注册</a>
+    </section>
+</nav>
+<section class="carousel">
+    <div>
+        <a><img src="imgs/indexImgs/ad_item1.jpg"/></a>
+        <a><img src="imgs/indexImgs/ad_item2.jpg"/></a>
+        <a><img src="imgs/indexImgs/ad_item3.jpg"/></a>
+    </div>
+    <span class="left">L</span>
+    <span class="right">R</span>
+</section>
+<section class="advertisement">
+    <a><img src="imgs/indexImgs/ad_item1.jpg"/></a>
+    <a><img src="imgs/indexImgs/ad_item3.jpg"/></a>
+    <a><img src="imgs/indexImgs/ad_item2.jpg"/></a>
+</section>
+<section class="newclass">
+    <span class="newclass_title">最新课程</span>
+    <div>
+        <div class="newclass_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span class="item_title">从零开始学架构</span><br/>
+            <span>高级</span><span>10门课</span>
+            <div></div>
+        </div>
+        <div class="newclass_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span class="item_title">从零开始学架构</span><br/>
+            <span>高级</span><span>10门课</span>
+            <div></div>
+        </div>
+        <div class="newclass_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span class="item_title">从零开始学架构</span><br/>
+            <span>高级</span><span>10门课</span>
+            <div></div>
+        </div>
+        <div class="newclass_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span class="item_title">从零开始学架构</span><br/>
+            <span>高级</span><span>10门课</span>
+            <div></div>
+        </div>
+    </div>
+</section>
+<section class="occupation">
+    <span class="occupation_title">职业方向</span>
+    <div>
+        <div class="occupation_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span>Android工程师</span>
+            <div></div>
+        </div>
+        <div class="occupation_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span>Android工程师</span>
+            <div></div>
+        </div>
+        <div class="occupation_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span>Android工程师</span>
+            <div></div>
+        </div>
+        <div class="occupation_item">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <span>Android工程师</span>
+            <div></div>
+        </div>
+    </div>
+</section>
+<section class="story">
+    <div class="story_item">
+        <i>学员故事</i>
+        <p>爆1炸力学硕士转安卓开发，回顾自己从爆炸力学走向代码世界的历程，感触良多。庆幸自己没有留在研究所，程序员不断学习不断进步的感觉更有意义。</p>
+        <div class="personal">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <div class="person_detail">
+                <span>张少龙</span><br/>
+                <span>入职 农工商科技</span>
+            </div>
+        </div>
+    </div>
+    <div class="story_item">
+        <i>学员故事</i>
+        <p>爆1炸力学硕士转安卓开发，回顾自己从爆炸力学走向代码世界的历程，感触良多。庆幸自己没有留在研究所，程序员不断学习不断进步的感觉更有意义。</p>
+        <div class="personal">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <div class="person_detail">
+                <span>张少龙</span><br/>
+                <span>入职 农工商科技</span>
+            </div>
+        </div>
+    </div>
+    <div class="story_item">
+        <i>学员故事</i>
+        <p>爆1炸力学硕士转安卓开发，回顾自己从爆炸力学走向代码世界的历程，感触良多。庆幸自己没有留在研究所，程序员不断学习不断进步的感觉更有意义。</p>
+        <div class="personal">
+            <img src="imgs/indexImgs/new_class1.png"/>
+            <div class="person_detail">
+                <span>张少龙</span><br/>
+                <span>入职 农工商科技</span>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="clear:both;"></div>
+<footer>
+    <ul>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li><i>|</i>
+        <li>关于我们</li>
+    </ul>
+    <div class="footer_copyright">
+        <span>Copyright&copy;2013-2018 jikexueyuan.com All Rights Reserved. 京ICP备11018032号 京公网安备11010802013056</span>
+    </div>
+</footer>
+</body>
+</html>
